@@ -126,7 +126,7 @@ class _VierGewinntState extends State<VierGewinnt> {
                 child: Container(
                   margin: EdgeInsets.all(4),
                   decoration: BoxDecoration(
-                    color: board[row][col] ?? Colors.white,
+                    color: board[row][col] ?? Color.fromARGB(255, 79, 69, 69),
                     shape: BoxShape.circle,
                   ),
                   width: 60, // Adjust size of game pieces for visibility
