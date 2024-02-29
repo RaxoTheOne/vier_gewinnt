@@ -28,8 +28,7 @@ class VierGewinnt extends StatefulWidget {
 }
 
 class _VierGewinntState extends State<VierGewinnt> {
-  List<List<Color?>> board =
-      List.generate(6, (_) => List.filled(7, null)); // Game board
+  List<List<Color?>> board = List.generate(6, (_) => List.filled(7, null)); // Game board
   bool redTurn = true; // Indicates whose turn it is
   bool gameOver = false; // Indicates if the game is over
 
@@ -69,27 +68,25 @@ class _VierGewinntState extends State<VierGewinnt> {
   }
 
   bool checkWinner(int row, int col) {
+    Color? color = board[row][col];
+    if (color == null) return false;
+
     // Check horizontal
     for (int c = 0; c <= 3; c++) {
-      if (col + c <= 3 &&
-          board[row][col + c] == board[row][col] &&
-          board[row][col] != null) {
+      if (col + c <= 3 && board[row][col + c] == color) {
         return true;
       }
     }
     // Check vertical
     for (int r = 0; r <= 2; r++) {
-      if (row - r >= 0 &&
-          board[row - r][col] == board[row][col] &&
-          board[row][col] != null) {
+      if (row - r >= 0 && board[row - r][col] == color) {
         return true;
       }
     }
     // Check diagonal \
     for (int d = -3; d <= 3; d++) {
       if (row - d >= 0 && row - d <= 5 && col - d >= 0 && col - d <= 6) {
-        if (board[row - d][col - d] == board[row][col] &&
-            board[row][col] != null) {
+        if (board[row - d][col - d] == color) {
           return true;
         }
       }
@@ -97,8 +94,7 @@ class _VierGewinntState extends State<VierGewinnt> {
     // Check diagonal /
     for (int d = -3; d <= 3; d++) {
       if (row + d >= 0 && row + d <= 5 && col - d >= 0 && col - d <= 6) {
-        if (board[row + d][col - d] == board[row][col] &&
-            board[row][col] != null) {
+        if (board[row + d][col - d] == color) {
           return true;
         }
       }
@@ -120,8 +116,7 @@ class _VierGewinntState extends State<VierGewinnt> {
       children: <Widget>[
         Expanded(
           child: GridView.builder(
-            gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 7),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 7),
             itemCount: 42,
             itemBuilder: (context, index) {
               int row = index ~/ 7;
@@ -129,11 +124,13 @@ class _VierGewinntState extends State<VierGewinnt> {
               return GestureDetector(
                 onTap: () => dropPiece(col),
                 child: Container(
-                  margin: EdgeInsets.all(2),
+                  margin: EdgeInsets.all(4),
                   decoration: BoxDecoration(
-                    color: board[row][col],
+                    color: board[row][col] ?? Colors.white,
                     shape: BoxShape.circle,
                   ),
+                  width: 60, // Adjust size of game pieces for visibility
+                  height: 60,
                 ),
               );
             },
