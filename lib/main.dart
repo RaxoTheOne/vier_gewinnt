@@ -49,7 +49,7 @@ class _VierGewinntState extends State<VierGewinnt> {
                     title: Text('Spiel beendet!'),
                     content: Text('${redTurn ? "Rot" : "Gelb"} hat gewonnen!'),
                     actions: <Widget>[
-                      FlatButton(
+                      TextButton(
                         child: Text('Neues Spiel'),
                         onPressed: () {
                           resetBoard();
@@ -139,7 +139,7 @@ class _VierGewinntState extends State<VierGewinnt> {
             },
           ),
         ),
-        RaisedButton(
+        ElevatedButton(
           onPressed: resetBoard,
           child: Text('Neues Spiel starten'),
         ),
