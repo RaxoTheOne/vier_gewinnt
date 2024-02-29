@@ -28,7 +28,8 @@ class VierGewinnt extends StatefulWidget {
 }
 
 class _VierGewinntState extends State<VierGewinnt> {
-  List<List<Color?>> board = List.generate(6, (_) => List.filled(7, null)); // Game board
+  List<List<Color?>> board =
+      List.generate(6, (_) => List.filled(7, null)); // Game board
   bool redTurn = true; // Indicates whose turn it is
   bool gameOver = false; // Indicates if the game is over
 
@@ -116,7 +117,8 @@ class _VierGewinntState extends State<VierGewinnt> {
       children: <Widget>[
         Expanded(
           child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 7),
+            gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 7),
             itemCount: 42,
             itemBuilder: (context, index) {
               int row = index ~/ 7;
